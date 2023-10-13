@@ -18,7 +18,8 @@ export const contactsSlice = createSlice({
             state.items.push(action.payload);
         },
         removeContact(state, action) {
-            state.items = state.items.filter(item => item.id !== action.payload);
+            const lowerCaseFilter = state.filter.toLowerCase();
+            state.items = state.items.filter(item => item.id !== action.payload && item.name.toLowerCase().includes(lowerCaseFilter));
         },
         changeFilter(state, action) {
             state.filter = action.payload;
